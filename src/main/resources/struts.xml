@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!--ajax与struts2的交互-->
+    <package name="game" namespace="/" extends="struts-default,json-default">
+        <action name="showAllGameByFirstWord" class="com.kgc.controller.GameAction" method="getGameByFirstWord">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getGameNameByIsHot" class="com.kgc.controller.GameAction" method="getGameNameByIsHot">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <package name="json" namespace="/json" extends="json-default">
+        <action name="showJson" class="com.kgc.controller.StudentActionJson">
+            <result name="success" type="json">
+                <!--root表示返回json的根-->
+                <param name="root">student</param>
+            </result>
+        </action>
+    </package>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <!--文件上传-->
+        <action name="upload" class="com.kgc.controller.FileUploadAction">
+            <result name="success">/uploadSuccess.jsp</result>
+            <result name="error">/uploadError.jsp</result>
+        </action>
+    </package>
+</struts>
